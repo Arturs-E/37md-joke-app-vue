@@ -1,0 +1,14 @@
+.joke-form {
+
+  &__label-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+  }
+}
