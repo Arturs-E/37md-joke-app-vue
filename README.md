@@ -17,7 +17,7 @@ Uztaisīt joku lapu
 
 ![Joke app Gif](./public/joke-appsis.gif)
 
-![Joke app ScreenShot](./public/Screenshot 2021-12-11 at 16.02.08.png)
+![Joke app ScreenShot](./public/Screenshot.png)
 
 ## Project setup
 ```
