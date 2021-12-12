@@ -1,9 +1,9 @@
 # 37md-joke-app-vue
 
-##UZDEVUMS:
+## UZDEVUMS:
 Uztaisīt joku lapu
 
-##NOSACĪJUMI:
+## NOSACĪJUMI:
 1. Ir 2 routes: Jokes un Random jokes
 2. /jokes routā var redzēt sarakstu ar jokiem.
 3. Katrs joks sastāv no 2 daļām. Jautājums un atbilde.
@@ -16,6 +16,7 @@ Uztaisīt joku lapu
 10. Abos routes jābūt iespējai meklēt joku pēc atslēgvārdiem pašā jokā.
 
 ![Joke app Gif](./public/joke-appsis.gif)
+
 ![Joke app ScreenShot](./public/Screenshot 2021-12-11 at 16.02.08.png)
 
 ## Project setup
