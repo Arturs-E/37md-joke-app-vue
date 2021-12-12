@@ -1,13 +1,19 @@
 <template>
   <div class="page-content">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="nav-wrapper">
+      <img alt="Joke logo" src="./assets/logo.png" class="logo" />
+      <div class="nav">
+        <router-link to="/jokes">Jokes</router-link>
+        <router-link to="/random-jokes">Random Jokes</router-link>
+      </div>
     </div>
-    <router-view />
+    <div class="content-wrapper">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <style lang="scss">
+@import "./assets/css-reset";
 @import "./App";
 </style>
