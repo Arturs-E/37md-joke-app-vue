@@ -2,6 +2,12 @@
 
 .heading2 {
   font-size: 30px;
+  color: #42b983;
+  font-weight: 500;
+}
+
+.heading-wrapper {
+  margin-bottom: 30px;
 }
 
 .page-content {
@@ -13,7 +19,7 @@
 
 .nav-wrapper {
   padding: 30px 10px 0;
-  margin-bottom: 50px;
+  margin-bottom: 42px;
   display: flex;
   align-items: stretch;
   gap: 50px;

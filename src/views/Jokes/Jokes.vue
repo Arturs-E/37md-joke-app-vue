@@ -1,10 +1,16 @@
 <template>
-  <div class="home">
+  <div class="joke-form-wrapper">
     <CreateJokeForm @joke-submit="addJoke" />
   </div>
-  <div>
-    <div v-for="joke of jokesData" :key="joke.id">
-      <span>{{ joke.question }}</span>
+  <div class="jokes-container">
+    <div v-for="joke of jokesData" :key="joke.id" class="joke">
+      <span class="joke__question">{{ joke.question }}</span>
+      <span class="joke__answer">{{joke.answer}}</span>
+      <div class="joke__button-wrapper">
+        <button>Tell me</button>
+        <button @click="$router.push(`/jokes/${joke.id}`)">Joke info</button>
+        <button>Delete</button>
+      </div>
     </div>
   </div>
 </template>
@@ -14,7 +20,7 @@ import { defineComponent } from "vue";
 import { uuid } from "vue-uuid";
 import CreateJokeForm from "@/components/CreateJoke/CreateJokeForm.vue";
 
-type JokesData = {
+export type JokesData = {
   id: string;
   question: string;
   answer: string;
@@ -53,3 +59,7 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss">
+@import "./Jokes.scss";
+</style>

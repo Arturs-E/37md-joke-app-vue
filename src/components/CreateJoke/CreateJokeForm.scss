@@ -9,6 +9,18 @@
   &__label {
     display: flex;
     flex-direction: column;
-    gap: 8px
+    gap: 8px;
+    font-weight: bold;
+  }
+}
+
+.input-field {
+  padding: 6px 12px;
+  border: 1px solid #2c3e50;
+  border-radius: 4px;
+  font-size: 16px;
+
+  &::placeholder {
+    color: #999;
   }
 }
