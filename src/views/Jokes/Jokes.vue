@@ -2,14 +2,15 @@
   <div class="joke-form-wrapper">
     <CreateJokeForm @joke-submit="addJoke" />
   </div>
+  <hr class="hr">
   <div class="jokes-container">
     <div v-for="joke of jokesData" :key="joke.id" class="joke">
       <span class="joke__question">{{ joke.question }}</span>
-      <span class="joke__answer">{{joke.answer}}</span>
+      <span v-if="joke.isAnswerVisible" class="joke__answer">{{joke.answer}}</span>
       <div class="joke__button-wrapper">
-        <button>Tell me</button>
+        <button @click="setAnswerVisible(joke.id)">Tell me</button>
         <button @click="$router.push(`/jokes/${joke.id}`)">Joke info</button>
-        <button>Delete</button>
+        <button @click="removeJoke(joke.id)">Delete</button>
       </div>
     </div>
   </div>
@@ -25,6 +26,7 @@ export type JokesData = {
   question: string;
   answer: string;
   timestamp: number;
+  isAnswerVisible: boolean;
 };
 
 type FormValues = {
@@ -38,8 +40,16 @@ export default defineComponent({
     jokesData: [] as JokesData[],
     uuid: () => uuid.v4(),
   }),
-  created() {
+  mounted() {
     this.jokesData = JSON.parse(localStorage.getItem("Vue jokes") || "[]");
+  },
+  watch: {
+    jokesData: {
+      handler() {
+        localStorage.setItem("Vue jokes", JSON.stringify(this.jokesData));
+      },
+      deep: true,
+    },
   },
   methods: {
     addJoke(formValues: FormValues) {
@@ -47,11 +57,22 @@ export default defineComponent({
         ...formValues,
         id: this.uuid(),
         timestamp: this.getTimestamp(),
+        isAnswerVisible: false,
       });
-      localStorage.setItem("Vue jokes", JSON.stringify(this.jokesData));
     },
     getTimestamp() {
       return Date.now();
+    },
+    removeJoke(id: string) {
+      this.jokesData = this.jokesData.filter((joke) => joke.id !== id);
+    },
+    setAnswerVisible(id: string) {
+      this.jokesData = this.jokesData.map((joke) => {
+        if (joke.id === id) {
+          return { ...joke, isAnswerVisible: !joke.isAnswerVisible };
+        }
+        return joke;
+      });
     },
   },
   components: {

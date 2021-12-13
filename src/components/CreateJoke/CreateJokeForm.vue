@@ -40,13 +40,15 @@ export default defineComponent({
   }),
   methods: {
     submitHandler() {
-      this.$emit("joke-submit", {
-        question: this.inputValues.question,
-        answer: this.inputValues.answer,
-      });
-      this.inputValues = { question: "", answer: "" };
-      const inputField = this.$refs.questionInputRef as HTMLInputElement;
-      inputField.focus();
+      if (this.inputValues.question && this.inputValues.answer) {
+        this.$emit("joke-submit", {
+          question: this.inputValues.question,
+          answer: this.inputValues.answer,
+        });
+        this.inputValues = { question: "", answer: "" };
+        const inputField = this.$refs.questionInputRef as HTMLInputElement;
+        inputField.focus();
+      }
     },
   },
   mounted() {

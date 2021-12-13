@@ -1,9 +1,12 @@
 <template>
-  <div>This is joke info</div>
-  <span>Question: {{ joke.question }}</span>
-  <span>Answer: {{ joke.answer }}</span>
-  <span>ID: {{ id }}</span>
-  <span>Timestamp: {{ joke.timestamp }}</span>
+  <h2 v-if="!joke">We couldn't find the joke. Sorry!</h2>
+  <div v-else class="joke-info">
+    <span><strong>Question:</strong> {{ joke.question }}</span>
+    <span><strong>Answer:</strong> {{ joke.answer }}</span>
+    <span><strong>ID:</strong> {{ id }}</span>
+    <span><strong>Timestamp:</strong> {{ formatTimestamp(joke.timestamp) }}</span>
+  </div>
+  <button @click="$router.go(-1)">Go back</button>
 </template>
 
 <script lang="ts">
@@ -19,11 +22,30 @@ export default defineComponent({
     },
   },
   data: () => ({
-    joke: {} as JokesData,
+    joke: {} as JokesData | undefined,
   }),
-  created() {
+  mounted() {
     const jokesData = JSON.parse(localStorage.getItem("Vue jokes")!);
-    this.joke = jokesData.find((joke: JokesData) => joke.id === this.id)!;
+    this.joke = jokesData.find((joke: JokesData) => joke.id === this.id);
+  },
+  methods: {
+    formatTimestamp(value: string) {
+      const d = new Date(value);
+      const time = d.toLocaleTimeString("lv-LV", {
+        hour12: false,
+      });
+      const date = d.toLocaleDateString("lv-LV", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      return `${time} | ${date}`;
+    },
   },
 });
 </script>
+
+<style lang="scss">
+@import "./JokeInfo.scss";
+</style>

@@ -1,0 +1,9 @@
+.joke-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 8px;
+
+  & strong {
+    font-weight: bold;
+  }
+}
