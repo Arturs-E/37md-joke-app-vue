@@ -1,14 +1,6 @@
 <template>
   <form
-    @submit.prevent
-    @submit="
-      processInputFields({
-        id: uuid(),
-        question: inputValues.question,
-        answer: inputValues.answer,
-        timestamp: getTimestamp(),
-      })
-    "
+    @submit.prevent="submitHandler"
     class="joke-form"
   >
     <h2 class="heading2">Create a joke</h2>
@@ -32,38 +24,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
-import { uuid } from "vue-uuid";
-
-type JokesData = {
-  id: string;
-  question: string;
-  answer: string;
-  timestamp: number;
-};
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "CreateJokeForm",
-  props: {
-    addJoke: {
-      type: Function as PropType<(value: JokesData) => void>,
-      required: true,
-    },
-  },
   data: () => ({
     inputValues: { question: "", answer: "" },
-    jokesData: [] as JokesData[],
-    uuid: () => uuid.v4(),
   }),
   methods: {
-    processInputFields(joke: JokesData) {
-      this.addJoke(joke);
+    submitHandler() {
+      this.$emit("joke-submit", {
+        question: this.inputValues.question,
+        answer: this.inputValues.answer,
+      });
       this.inputValues = { question: "", answer: "" };
       const inputField = this.$refs.questionInputRef as HTMLInputElement;
       inputField.focus();
-    },
-    getTimestamp() {
-      return Date.now();
     },
   },
   mounted() {
