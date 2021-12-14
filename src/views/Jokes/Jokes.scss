@@ -14,14 +14,21 @@
   border-radius: 4px;
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 8px;
+  row-gap: 14px;
 
   &__question {
-    text-transform: capitalize;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
 
   &__answer {
-    text-transform: capitalize;
+    font-size: 14px;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
 
   &__button-wrapper {
