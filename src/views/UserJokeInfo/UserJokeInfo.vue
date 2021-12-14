@@ -4,10 +4,10 @@
     <span><strong>Question:</strong> {{ joke.question }}</span>
     <span><strong>Answer:</strong> {{ joke.answer }}</span>
     <span><strong>ID:</strong> {{ id }}</span>
-    <span
-      ><strong>Timestamp:</strong>
-      {{ formatTimestamp(`${joke.timestamp}`) }}</span
-    >
+    <span>
+      <strong>Timestamp: </strong>
+      {{ formatTimestamp(joke.timestamp) }}
+    </span>
   </div>
   <Button title="Go back" @on-click="$router.go(-1)" />
 </template>
@@ -37,7 +37,7 @@ export default defineComponent({
     }
   },
   methods: {
-    formatTimestamp(value: string) {
+    formatTimestamp(value: number) {
       const d = new Date(value);
       const time = d.toLocaleTimeString("en-us", {
         hour12: false,

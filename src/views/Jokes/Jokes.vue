@@ -4,11 +4,18 @@
   </div>
   <hr class="hr" />
   <div class="jokes-container">
-    <div v-for="joke of jokesData" :key="joke.id" class="joke">
+    <input
+      type="text"
+      class="input-field"
+      placeholder="Search joke..."
+      v-model="searchInput"
+      @input="searchJoke"
+    />
+    <div v-for="joke of searchJoke()" :key="joke.id" class="joke">
       <span class="joke__question">{{ joke.question }}</span>
-      <span v-if="joke.isAnswerVisible" class="joke__answer">{{
-        joke.answer
-      }}</span>
+      <span v-if="joke.isAnswerVisible" class="joke__answer">
+        {{ joke.answer }}
+      </span>
       <div class="joke__button-wrapper">
         <Button title="Tell me" @on-click="setAnswerVisible(joke.id)" />
         <Button
@@ -31,6 +38,7 @@ import { defineComponent } from "vue";
 import { uuid } from "vue-uuid";
 import CreateJokeForm from "@/components/CreateJoke/CreateJokeForm.vue";
 import Button from "@/components/Buttons/Button.vue";
+import { defaultUserJokeData } from "@/assets/defaultUserJokeData";
 
 export type JokesData = {
   id: string;
@@ -50,22 +58,16 @@ export default defineComponent({
   data: () => ({
     jokesData: [] as JokesData[],
     uuid: () => uuid.v4(),
+    searchInput: "",
   }),
   mounted() {
     const data = localStorage.getItem("Vue jokes");
     if (data) {
       this.jokesData = JSON.parse(data);
     } else {
-      this.jokesData = [];
+      this.jokesData = [...defaultUserJokeData];
+      localStorage.setItem("Vue jokes", JSON.stringify(this.jokesData));
     }
-  },
-  watch: {
-    jokesData: {
-      handler() {
-        localStorage.setItem("Vue jokes", JSON.stringify(this.jokesData));
-      },
-      deep: true,
-    },
   },
   methods: {
     addJoke(formValues: FormValues) {
@@ -75,12 +77,14 @@ export default defineComponent({
         timestamp: this.getTimestamp(),
         isAnswerVisible: false,
       });
+      localStorage.setItem("Vue jokes", JSON.stringify(this.jokesData));
     },
     getTimestamp() {
       return Date.now();
     },
     removeJoke(id: string) {
       this.jokesData = this.jokesData.filter((joke) => joke.id !== id);
+      localStorage.setItem("Vue jokes", JSON.stringify(this.jokesData));
     },
     setAnswerVisible(id: string) {
       this.jokesData = this.jokesData.map((joke) => {
@@ -92,6 +96,17 @@ export default defineComponent({
     },
     goToJoke(id: string) {
       this.$router.push({ name: "joke-info", params: { id: id } });
+    },
+    searchJoke() {
+      if (!this.searchInput) {
+        return this.jokesData;
+      } else {
+        return this.jokesData.filter(
+          (joke) =>
+            joke.question.includes(this.searchInput) ||
+            joke.answer.includes(this.searchInput)
+        );
+      }
     },
   },
   components: {
