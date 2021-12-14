@@ -2,23 +2,24 @@
   <h1 v-if="loading" class="heading1" style="text-align: center">
     Loading data...
   </h1>
-  <div v-if="randomJokeData">
+  <div v-if="randomJokeData" class="joke-info-wrapper">
     <div class="heading-wrapper">
       <h2 class="heading2">Joke info</h2>
     </div>
-    <div>
-      <span>{{ randomJokeData.joke }}</span>
-      <span>{{ randomJokeData.id }}</span>
-      <span>{{ randomJokeData.category }}</span>
-      <span>{{ randomJokeData.lang }}</span>
+    <div class="joke-info">
+      <span><strong>Joke:</strong> {{ randomJokeData.joke }}</span>
+      <span><strong>ID:</strong> {{ randomJokeData.id }}</span>
+      <span><strong>Category:</strong> {{ randomJokeData.category }}</span>
+      <span><strong>Language:</strong> {{ randomJokeData.lang }}</span>
     </div>
   </div>
-  <button @click="$router.go(-1)">Go back</button>
+  <Button title="Go back" @on-click="$router.go(-1)" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import axios from "axios";
+import Button from "@/components/Buttons/Button.vue";
 
 type RandomJokeData = {
   error: boolean;
@@ -40,6 +41,7 @@ type RandomJokeData = {
 
 export default defineComponent({
   name: "RandomJokeInfo",
+  components: { Button },
   props: {
     id: {
       type: String,

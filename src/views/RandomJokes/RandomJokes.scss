@@ -1,0 +1,16 @@
+.random-jokes-list {
+
+  & li {
+    list-style: decimal;
+    margin-bottom: 8px;
+  }
+
+  & li a {
+    text-decoration: none;
+    color: #444;
+
+    &:hover {
+      color: #42b983;
+    }
+  }
+}

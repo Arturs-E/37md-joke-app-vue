@@ -7,9 +7,19 @@
       <div class="heading-wrapper">
         <h2 class="heading2">Random jokes</h2>
       </div>
-      <ol>
-        <li v-for="{ joke, id } in randomJokesData.jokes" :key="id">
-          <router-link :to="{ name: 'random-jokes-info', params: { id: id } }">
+      <ol class="random-jokes-list">
+        <li
+          v-for="{ joke, id } in randomJokesData.jokes"
+          :key="id"
+        >
+          <router-link
+            :to="{
+              name: 'random-jokes-info',
+              params: {
+                id: id,
+              },
+            }"
+          >
             {{ joke }}
           </router-link>
         </li>

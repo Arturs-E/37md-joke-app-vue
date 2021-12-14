@@ -1,0 +1,37 @@
+.button {
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: #42b983;
+  color: #fff;
+  font-size: 16px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #349667;
+  }
+
+  &:active {
+    box-shadow: 0 0 2px 1px #818181;
+  }
+
+  &--secondary {
+    background-color: #fff;
+    color: #42b983;
+    border-color: #42b983;
+
+    &:hover {
+      border-color: #349667;
+      background-color: #fff;
+      color: #349667;
+    }
+  }
+
+  &--danger {
+    background-color: #e74e4e;
+
+    &:hover {
+      background-color: #c04141;
+    }
+  }
+}

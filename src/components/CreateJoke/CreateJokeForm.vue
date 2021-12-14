@@ -25,16 +25,18 @@
           v-model="inputValues.answer"
         />
       </label>
-      <button type="submit">Create</button>
+      <Button title="Create" />
     </div>
   </form>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Button from "@/components/Buttons/Button.vue";
 
 export default defineComponent({
   name: "CreateJokeForm",
+  components: { Button },
   data: () => ({
     inputValues: { question: "", answer: "" },
   }),

@@ -10,9 +10,9 @@
         joke.answer
       }}</span>
       <div class="joke__button-wrapper">
-        <button @click="setAnswerVisible(joke.id)">Tell me</button>
-        <button @click="goToJoke(joke.id)">Joke info</button>
-        <button @click="removeJoke(joke.id)">Delete</button>
+        <Button title="Tell me" @on-click="setAnswerVisible(joke.id)" />
+        <Button title="Joke info" additional-classes="button--secondary" @on-click="goToJoke(joke.id)" />
+        <Button title="Delete" additional-classes="button--danger" @on-click="removeJoke(joke.id)" />
       </div>
     </div>
   </div>
@@ -22,6 +22,7 @@
 import { defineComponent } from "vue";
 import { uuid } from "vue-uuid";
 import CreateJokeForm from "@/components/CreateJoke/CreateJokeForm.vue";
+import Button from "@/components/Buttons/Button.vue";
 
 export type JokesData = {
   id: string;
@@ -81,6 +82,7 @@ export default defineComponent({
     },
   },
   components: {
+    Button,
     CreateJokeForm,
   },
 });
