@@ -25,7 +25,12 @@
           v-model="inputValues.answer"
         />
       </label>
-      <Button title="Create" />
+      <Button
+        title="Create"
+        :additional-classes="
+          !inputValues.question || !inputValues.answer ? 'button--disabled' : ''
+        "
+      />
     </div>
   </form>
 </template>

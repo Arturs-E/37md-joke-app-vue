@@ -101,10 +101,8 @@ export default defineComponent({
       if (!this.searchInput) {
         return this.jokesData;
       } else {
-        return this.jokesData.filter(
-          (joke) =>
-            joke.question.includes(this.searchInput) ||
-            joke.answer.includes(this.searchInput)
+        return this.jokesData.filter((joke) =>
+          joke.question.includes(this.searchInput)
         );
       }
     },

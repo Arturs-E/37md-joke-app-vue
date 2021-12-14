@@ -34,4 +34,9 @@
       background-color: #c04141;
     }
   }
+
+  &--disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 }
