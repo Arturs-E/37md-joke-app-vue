@@ -11,8 +11,16 @@
       }}</span>
       <div class="joke__button-wrapper">
         <Button title="Tell me" @on-click="setAnswerVisible(joke.id)" />
-        <Button title="Joke info" additional-classes="button--secondary" @on-click="goToJoke(joke.id)" />
-        <Button title="Delete" additional-classes="button--danger" @on-click="removeJoke(joke.id)" />
+        <Button
+          title="Joke info"
+          additional-classes="button--secondary"
+          @on-click="goToJoke(joke.id)"
+        />
+        <Button
+          title="Delete"
+          additional-classes="button--danger"
+          @on-click="removeJoke(joke.id)"
+        />
       </div>
     </div>
   </div>
@@ -44,7 +52,12 @@ export default defineComponent({
     uuid: () => uuid.v4(),
   }),
   mounted() {
-    this.jokesData = JSON.parse(localStorage.getItem("Vue jokes") || "[]");
+    const data = localStorage.getItem("Vue jokes");
+    if (data) {
+      this.jokesData = JSON.parse(data);
+    } else {
+      this.jokesData = [];
+    }
   },
   watch: {
     jokesData: {

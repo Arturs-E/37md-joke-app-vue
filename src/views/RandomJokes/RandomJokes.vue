@@ -8,10 +8,7 @@
         <h2 class="heading2">Random jokes</h2>
       </div>
       <ol class="random-jokes-list">
-        <li
-          v-for="{ joke, id } in randomJokesData.jokes"
-          :key="id"
-        >
+        <li v-for="{ joke, id } in randomJokesData.jokes" :key="id">
           <router-link
             :to="{
               name: 'random-jokes-info',

@@ -4,7 +4,10 @@
     <span><strong>Question:</strong> {{ joke.question }}</span>
     <span><strong>Answer:</strong> {{ joke.answer }}</span>
     <span><strong>ID:</strong> {{ id }}</span>
-    <span><strong>Timestamp:</strong> {{ formatTimestamp(joke.timestamp) }}</span>
+    <span
+      ><strong>Timestamp:</strong>
+      {{ formatTimestamp(`${joke.timestamp}`) }}</span
+    >
   </div>
   <Button title="Go back" @on-click="$router.go(-1)" />
 </template>
@@ -27,8 +30,11 @@ export default defineComponent({
     joke: {} as JokesData | undefined,
   }),
   mounted() {
-    const jokesData = JSON.parse(localStorage.getItem("Vue jokes")!);
-    this.joke = jokesData.find((joke: JokesData) => joke.id === this.id);
+    const data = localStorage.getItem("Vue jokes");
+    if (data) {
+      const jokesData = JSON.parse(data);
+      this.joke = jokesData.find((joke: JokesData) => joke.id === this.id);
+    }
   },
   methods: {
     formatTimestamp(value: string) {
