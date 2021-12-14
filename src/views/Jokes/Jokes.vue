@@ -102,7 +102,7 @@ export default defineComponent({
         return this.jokesData;
       } else {
         return this.jokesData.filter((joke) =>
-          joke.question.includes(this.searchInput)
+          joke.question.toLowerCase().includes(this.searchInput.toLowerCase())
         );
       }
     },
