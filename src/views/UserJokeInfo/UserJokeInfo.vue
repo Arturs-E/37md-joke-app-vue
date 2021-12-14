@@ -47,5 +47,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "./JokeInfo.scss";
+@import "UserJokeInfo";
 </style>

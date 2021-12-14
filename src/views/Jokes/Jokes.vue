@@ -2,14 +2,16 @@
   <div class="joke-form-wrapper">
     <CreateJokeForm @joke-submit="addJoke" />
   </div>
-  <hr class="hr">
+  <hr class="hr" />
   <div class="jokes-container">
     <div v-for="joke of jokesData" :key="joke.id" class="joke">
       <span class="joke__question">{{ joke.question }}</span>
-      <span v-if="joke.isAnswerVisible" class="joke__answer">{{joke.answer}}</span>
+      <span v-if="joke.isAnswerVisible" class="joke__answer">{{
+        joke.answer
+      }}</span>
       <div class="joke__button-wrapper">
         <button @click="setAnswerVisible(joke.id)">Tell me</button>
-        <button @click="$router.push(`/jokes/${joke.id}`)">Joke info</button>
+        <button @click="goToJoke(joke.id)">Joke info</button>
         <button @click="removeJoke(joke.id)">Delete</button>
       </div>
     </div>
@@ -73,6 +75,9 @@ export default defineComponent({
         }
         return joke;
       });
+    },
+    goToJoke(id: string) {
+      this.$router.push({ name: "joke-info", params: { id: id } });
     },
   },
   components: {

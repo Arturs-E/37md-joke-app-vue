@@ -1,7 +1,7 @@
 <template>
   <div class="page-content">
     <div class="nav-wrapper">
-      <router-link to="/">
+      <router-link to="/jokes" exact>
         <img alt="Joke logo" src="./assets/logo.png" class="logo" />
       </router-link>
       <div class="nav">

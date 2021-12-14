@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Jokes from "../views/Jokes/Jokes.vue";
-import JokeInfo from "@/views/JokeInfo/JokeInfo.vue";
+import JokeInfo from "@/views/UserJokeInfo/UserJokeInfo.vue";
 import RandomJokes from "@/views/RandomJokes/RandomJokes.vue";
+import RandomJokeInfo from "@/views/RandomJokeInfo/RandomJokeInfo.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -23,6 +24,12 @@ const routes: Array<RouteRecordRaw> = [
     path: "/random-jokes",
     name: "random-jokes",
     component: RandomJokes,
+  },
+  {
+    path: "/random-jokes/:id",
+    name: "random-jokes-info",
+    component: RandomJokeInfo,
+    props: true,
   },
 ];
 
