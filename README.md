@@ -1,5 +1,7 @@
 # 37md-joke-app-vue
 
+![Joke app GIF](./joke-app-vue.gif)
+
 ## UZDEVUMS:
 Uztaisīt joku lapu
 
