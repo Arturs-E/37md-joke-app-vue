@@ -1,5 +1,7 @@
 # 37md-joke-app-vue
 
+You can view the project here - https://arturs-e.github.io/37md-joke-app-vue/
+
 ![Joke app GIF](./joke-app-vue.gif)
 
 ## UZDEVUMS:
